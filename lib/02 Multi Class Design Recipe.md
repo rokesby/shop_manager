@@ -2,7 +2,15 @@
 
 ## 1. Describe the Problem
 
-_Put or write the user story here. Add any clarifying notes you might have._
+Items
+- List of items
+    - Item : Name, price and stock level
+- Add an item
+
+Orders
+- List of orders
+    - Order : Customer name, Corresponding item, date_placed
+- Add an order
 
 ## 2. Design the Class System
 
@@ -11,69 +19,94 @@ focus on the details you see as important, not everything. The diagram below
 uses asciiflow.com but you could also use excalidraw.com, draw.io, or miro.com_
 
 ```
-┌────────────────────────────┐
-│ MusicPlayer                │
-│                            │
-│ - tracks                   │
-│ - add(track)               │
-│ - search_by_title(keyword) │
-│   => [tracks...]           │
-└───────────┬────────────────┘
-            │
-            │ owns a list of
-            ▼
-┌─────────────────────────┐
-│ Track(title, artist)    │
-│                         │
-│ - title                 │
-│ - artist                │
-│ - format()              │
-│   => "TITLE by ARTIST"  │
-└─────────────────────────┘
+┌─────────────────────┐                  ┌────────────────────┐
+│                     │                  │                    │
+│                     │                  │                    │
+│    Order            │                  │   Items            │
+│    - list all       ├─Made┼up┼of───────►    - list all      │
+│    - add            │                  │    - add           │
+│                     │                  │                    │
+└─────────────────────┘                  └────────────────────┘
 ```
 
 _Also design the interface of each class in more detail._
 
 ```python
-class MusicLibrary:
+class Orders:
     # User-facing properties:
-    #   tracks: list of instances of Track
+    #   order_list: list of active orders
 
     def __init__(self):
         pass # No code here yet
 
-    def add(self, track):
+    def add(self, order):
         # Parameters:
-        #   track: an instance of Track
+        #   order: an instance of Order
         # Side-effects:
-        #   Adds the track to the tracks property of the self object
+        #   Adds the order to the order_list property of the self object
         pass # No code here yet
 
-    def search_by_title(self, keyword):
+    def list_all(self):
         # Parameters:
-        #   keyword: string
+        #   None
         # Returns:
-        #   A list of the Track objects that have titles that include the keyword
+        #   A list of the Order objects
         pass # No code here yet
 
+class Order:
 
-class Track:
+    # User facing properties:
+
+    
+    def __init__(self):
+        pass # No code here yet
+            #   customer_name
+        #   date_placed
+        #   item_ordered
+        #   number_ordered
+
+
+class Items:
     # User-facing properties:
-    #   title: string
-    #   artist: string
+    #   None
 
-    def __init__(self, title, artist):
+    def __init__(self):
         # Parameters:
-        #   title: string
-        #   artist: string
+        # None
         # Side-effects:
-        #   Sets the title and artist properties
+        #   Seeds the initial items list based on the repository
         pass # No code here yet
 
     def format(self):
         # Returns:
-        #   A string of the form "TITLE by ARTIST"
+        #   A string of the form Item list...... TBD
         pass # No code here yet
+
+    def list_all(self):
+        # Parameters:
+        #   None
+        # Returns:
+        #   A list of the Item objects
+        pass # No code here yet
+
+    def add(self, Item):
+        # Parameters:
+        #   Item: an instance of Item
+        # Side-effects:
+        #   Adds the Item to the item_list property of the self object
+        pass # No code here yet
+
+
+class Item:
+
+    # User-facing properties:
+    #   item_id: int
+    def __init__(self):
+        pass # No code here yet
+            #   name
+            #   price
+            #   stock_level
+
 
 ```
 
@@ -86,16 +119,30 @@ combinations that reflect the ways in which the system will be used._
 # EXAMPLE
 
 """
-Given a library
-When we add two tracks
-We see those tracks reflected in the tracks list
+When add we add two Items 
+We see those Items reflected in the Items list
 """
-library = MusicLibrary()
-track_1 = Track("Carte Blanche", "Veracocha")
-track_2 = Track("Synaesthesia", "The Thrillseekers")
-library.add(track_1)
-library.add(track_2)
-library.tracks # => [track_1, track_2]
+
+inventory = Items()
+item1 = Item('Leather chair', 150, 17)
+item1 = Item('Desk lamp', 40, 19)
+inventory.add(item1)
+inventory.add(item2)
+inventory.list_all() == [item1, item2]
+
+
+"""
+When add we add two Orders 
+We see those order(s) reflected in the Orders list
+"""
+order_list = Orders()
+order1 = Order(item_id, customer_name, quantity, date_placed)
+order2 = Order(item_id, customer_name, quantity, date_placed)
+order_list.add(Order1)
+order_list.add(Order2)
+order_list.list_all() == [Order1, Order2]
+
+
 ```
 
 ## 4. Create Examples as Unit Tests

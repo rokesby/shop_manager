@@ -74,3 +74,15 @@ if __name__ == '__main__':
         
         # TODO : Refactor with case statement
 
+'''
+Run this in the background to confirm the script is working as intended.
+
+SELECT o.item_id, o.customer_name, o.date_order_placed, i.name
+from Orders o
+	join items i
+  on o.item_id = i.id;
+
+  select id, name, unit_price, stock_quantity from items;
+
+  SELECT * from Orders;
+'''

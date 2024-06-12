@@ -23,5 +23,16 @@ def test_add_new_order(db_connection):
 
     new_order = Order(1, 'Mr Blobby', '2024-06-12')
     repository.create(new_order)
-    # TODO : Test for insertion success in the Integration test? What is the ASSERT?
+    # We can return the list and check for the existence of the new order.
+
+    orders = repository.all()
+    
+    assert orders == [
+        Order(1, 'Mr Smith','2024-06-11'),
+        Order(2, 'Mr Canes','2024-06-11'),
+        Order(3, 'Mr Jones','2024-06-11'),
+        Order(4, 'Mr Green','2024-06-11'),
+        Order(1, 'Mr Brown','2024-06-11'),
+        Order(1, 'Mr Blobby','2024-06-12')
+    ]
 
